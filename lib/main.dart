@@ -24,7 +24,6 @@ class _ecomState extends State<ecom> {
     "score":100
   };
 
-
   Come come=Come.fromjson(Map);
 
   @override
@@ -100,19 +99,23 @@ class _ecomState extends State<ecom> {
     );
   }
   String imag="";
+
 }
 
 class Come {
   String id;
   String name;
   int score;
-
-  Come(this.id, this.name, this.score); // "id":"67899",
+  Come(this.id, this.name, this.score);
+  // "id":"67899",
   // "name":"namee",
   // "score":100
 
-  factory Come.fromjson(Map map) {
-    return Come(map['id'], map['name'], map['score']);
+  factory Come.fromjson(Map) {
+
+
+    return Come(Map['id'], Map['name'], Map['score']);
+
   }
 }
 
