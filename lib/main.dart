@@ -18,14 +18,15 @@ class _ecomState extends State<ecom> {
   final ImagePicker _picker = ImagePicker();
   bool namestatus=false;
   TextEditingController name=TextEditingController();
-
   Map map={
     "id":"67899",
     "name":"namee",
     "score":100
   };
 
-  Welcome welcome=Welcome.formjson();
+
+  Come come=Come.fromjson(Map);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,8 +102,18 @@ class _ecomState extends State<ecom> {
   String imag="";
 }
 
-class Welcome {
-  factory Welcome.formjson() {
-    return
+class Come {
+  String id;
+  String name;
+  int score;
+
+  Come(this.id, this.name, this.score); // "id":"67899",
+  // "name":"namee",
+  // "score":100
+
+  factory Come.fromjson(Map map) {
+    return Come(map['id'], map['name'], map['score']);
   }
 }
+
+
