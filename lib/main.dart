@@ -16,16 +16,23 @@ class ecom extends StatefulWidget {
 
 class _ecomState extends State<ecom> {
   final ImagePicker _picker = ImagePicker();
-  bool namestatus=false;
-  TextEditingController name=TextEditingController();
-  Map map={
-    "id":"67899",
-    "name":"namee",
-    "score":100
+  // bool namestatus=false;
+  // TextEditingController name=TextEditingController();
+  // Map map={
+  //   "id":"67899",
+  //   "name":"namee",
+  //   "score":100
+  // };
+  //
+  // Come come=Come.fromjson(Map);
+
+  Map map1={
+    "id":"6574",
+    "name":"bhvks",
+    "score":132
   };
 
-  Come come=Come.fromjson(Map);
-
+  Welcome welcome=Welcome.json(map1);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,26 +81,26 @@ class _ecomState extends State<ecom> {
               ),
            ),
           Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
-            child: TextField(controller: name,
+            child: TextField(//controller: name,
               decoration: InputDecoration(
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 labelText: "Enter Name",
                 hintText: "enter name",
-                errorText: namestatus?"Enter your valid name" :null
+                //errorText: namestatus?"Enter your valid name" :null
               ),
             ),
           ),
-          ElevatedButton(onPressed: () {
-            namestatus=false;
-            String nam=name.text;
-            setState(() {
-              if(name=="")
-                {
-                  namestatus=true;
-                }
-            });
-
-          },child: Text("Sign Up"))
+          // ElevatedButton(onPressed: () {
+          //   namestatus=false;
+          //   String nam=name.text;
+          //   setState(() {
+          //     if(name=="")
+          //       {
+          //         namestatus=true;
+          //       }
+          //   });
+          //
+          // },child: Text("Sign Up"))
       ],)
       ),
     );
@@ -102,21 +109,35 @@ class _ecomState extends State<ecom> {
 
 }
 
-class Come {
+class Welcome {
+  // "id":"6574",
+  // "name":"bhvks",
+  // "score":132
   String id;
   String name;
   int score;
-  Come(this.id, this.name, this.score);
-  // "id":"67899",
-  // "name":"namee",
-  // "score":100
 
-  factory Come.fromjson(Map) {
-
-
-    return Come(Map['id'], Map['name'], Map['score']);
-
+  Welcome(this.id, this.name, this.score);
+  factory Welcome.json(Map map1) {
+    return Welcome(map1['id'], map1['name'], map1['score']);
   }
 }
+
+// class Come {
+//   String id;
+//   String name;
+//   int score;
+//   Come(this.id, this.name, this.score);
+//   // "id":"67899",
+//   // "name":"namee",
+//   // "score":100
+//
+//   factory Come.fromjson(Map) {
+//
+//
+//     return Come(Map['id'], Map['name'], Map['score']);
+//
+//   }
+// }
 
 
