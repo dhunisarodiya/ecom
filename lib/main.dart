@@ -27,13 +27,14 @@ class _ecomState extends State<ecom> {
   //
   // Come come=Come.fromjson(Map);
 
+  Map map1={
+    "id":"6574",
+    "name":"bhvks",
+    "score":132,
+  };
   @override
   Widget build(BuildContext context) {
-    Map map1={
-      "id":"6574",
-      "name":"bhvks",
-      "score":132,
-    };
+
     Welcome welcome=Welcome.json(map1);
     print("id==${welcome.id}");
     return Container();
