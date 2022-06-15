@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -26,15 +27,17 @@ class _ecomState extends State<ecom> {
   //
   // Come come=Come.fromjson(Map);
 
-  Map map1={
-    "id":"6574",
-    "name":"bhvks",
-    "score":132
-  };
 
-  Welcome welcome=Welcome.json(map1);
+
   @override
   Widget build(BuildContext context) {
+    Map map1={
+      "id":"6574",
+      "name":"bhvks",
+      "score":132,
+    };
+    Welcome welcome=Welcome.json(map1);
+    print("==${welcome.id}");
     return Scaffold(
       body: SafeArea(
         child: Column(children: [
@@ -119,6 +122,7 @@ class Welcome {
 
   Welcome(this.id, this.name, this.score);
   factory Welcome.json(Map map1) {
+    // print("==${}");
     return Welcome(map1['id'], map1['name'], map1['score']);
   }
 }
