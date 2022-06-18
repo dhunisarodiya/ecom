@@ -33,7 +33,6 @@ class _ecomState extends State<ecom> {
     // TODO: implement initState
     super.initState();
 
-
   }
   @override
   Widget build(BuildContext context) {
@@ -125,7 +124,6 @@ class _ecomState extends State<ecom> {
                  firstDate: DateTime(1995),
                  lastDate: DateTime.now(),
                  ),
-
              ),
              Container(margin: EdgeInsets.fromLTRB(35, 00, 35, 10),
                child: TextField(controller: password,
