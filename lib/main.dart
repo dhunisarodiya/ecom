@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 void main()
 {
-  runApp(MaterialApp(home: ecom(),));
+  runApp(MaterialApp(home: apicall(),));
 }
 class ecom extends StatefulWidget {
 
@@ -22,7 +22,6 @@ class _ecomState extends State<ecom> {
   bool namestatus=false;
   bool numberstatus=false;
   bool datestatus=false;
-
   bool passwordstatus=false;
   bool emailstatus=false;
 
@@ -94,9 +93,10 @@ class _ecomState extends State<ecom> {
              ),
            ),
            Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
-             child: TextField(controller: name,
-               keyboardType: TextInputType.name,
-               decoration: InputDecoration(
+             child: TextField(
+                controller: name,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
                    labelText: "Enter Name",
                    hintText: "enter name",
@@ -106,7 +106,7 @@ class _ecomState extends State<ecom> {
            ),
            Container(margin: EdgeInsets.fromLTRB(35, 00, 35, 10),
              child: TextField(controller: number,
-               maxLength: 10,textAlign: TextAlign.center,
+               maxLength: 10,
                keyboardType: TextInputType.phone,
                decoration: InputDecoration(
                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
@@ -124,8 +124,9 @@ class _ecomState extends State<ecom> {
                border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
                  labelText: "Enter dob",
                  hintText: "enter dob",
+                 errorText: datestatus?"Enter your valid date":null,
                ),
-              type: DateTimePickerType.dateTime,
+              type: DateTimePickerType.date,
               dateHintText: "select date",
               firstDate: DateTime(1995),
               lastDate: DateTime.now(),
@@ -155,7 +156,6 @@ class _ecomState extends State<ecom> {
              namestatus=false;
              numberstatus=false;
              datestatus=false;
-
              passwordstatus=false;
              emailstatus=false;
 
