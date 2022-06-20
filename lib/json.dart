@@ -82,13 +82,13 @@ class _jsonState extends State<json> {
     Welcome4 welcome4 =Welcome4.fromjson(map4);
     print("imageName==${welcome4.images[1].imageName}");
 
-    List<Welcom5> temp=[];
-    print("url==${temp[1].url}");
+    List<Welcom5> tempp=[];
+    print("id==${tempp[1].id}");
 
     for(int i=0;i<list.length;i++)
       {
         Welcom5 wlc=Welcom5.fromjson(list[i]);
-        temp.add(wlc);
+        tempp.add(wlc);
       }
   }
 
