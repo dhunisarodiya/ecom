@@ -20,9 +20,9 @@ class _apicallState extends State<apicall> {
         return ListTile(
           leading: Image.network("https://media.istockphoto.com/photos/"
               "mountain-landscape-picture-id517188688?k=20&m=517188688&s=612x612&w="
-              "0&h=i38qBm2P-6V4vZVEaMy_TaTEaoCMkYhvLCysE7yJQ5Q="),
-          title: Text("${list[index].id}"),
-          subtitle: Text("${list[index].address!.city}"),
+              "0&h=i38qBm2P-6V4vZVEaMy_TaTEaoCMkYhvLCysE7yJQ5Q=",fit: BoxFit.fill,),
+          title: Text("${list[index].id}  ${list[index].company!.name}"),
+          subtitle: Text("${list[index].address!.city},  ${list[index].address!.geo!.lat}"),
         );
       },),
     )  :Center(child: CircularProgressIndicator());
