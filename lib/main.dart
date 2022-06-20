@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:date_time_picker/date_time_picker.dart';
+import 'package:ecom/Apicall.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:image_picker/image_picker.dart';
 
 
@@ -117,13 +119,29 @@ class _ecomState extends State<ecom> {
                height: 50,
                decoration: BoxDecoration(border: Border.all(width: 1,color:Colors.black38),
                    borderRadius: BorderRadius.circular(5)),
-               child: DateTimePicker(
-                 initialValue: '',
-                 type: DateTimePickerType.date,
-                 dateHintText: "select date",
-                 firstDate: DateTime(1995),
-                 lastDate: DateTime.now(),
-                 ),
+               child: //DateTimePicker(
+               //   initialValue: '',
+               //   type: DateTimePickerType.date,
+               //   dateHintText: "select date",
+               //   firstDate: DateTime(1995),
+               //   lastDate: DateTime.now(),
+                   TextField(
+                       onChanged: (value) {
+                         DatePicker.showDatePicker(context,
+                             showTitleActions: true,
+                             minTime: DateTime(2018, 3, 5),
+                             maxTime: DateTime(2019, 6, 7), onChanged: (date) {
+                               print('change $date');
+                             }, onConfirm: (date) {
+                               print('confirm $date');
+                             }, currentTime: DateTime.now(), locale: LocaleType.zh);
+                       },
+                       // child: Text(
+                       //   'show date time picker (Chinese)',
+                       //   style: TextStyle(color: Colors.blue),
+                       // )
+                     ),
+                 // ),
              ),
              Container(margin: EdgeInsets.fromLTRB(35, 00, 35, 10),
                child: TextField(controller: password,

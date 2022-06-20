@@ -36,7 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   image_picker:
   date_time_picker:
-
+  http:
+  flutter_datetime_picker:
 dev_dependencies:
   flutter_test:
     sdk: flutter
