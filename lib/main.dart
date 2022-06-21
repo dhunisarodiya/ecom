@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 
 void main()
 {
-  runApp(MaterialApp(home: json(),));
+  runApp(MaterialApp(home: ecom(),));
 }
 class ecom extends StatefulWidget {
 
@@ -118,8 +118,6 @@ class _ecomState extends State<ecom> {
              ),
            ),
            Container(margin: EdgeInsets.fromLTRB(35, 00, 35, 10),
-             // decoration: BoxDecoration(border: Border.all(width: 1,color:Colors.black26),
-             //   borderRadius: BorderRadius.circular(5)),
              child: DateTimePicker(controller: dateofbirth,
                decoration: InputDecoration(
                border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
@@ -159,7 +157,6 @@ class _ecomState extends State<ecom> {
              datestatus=false;
              passwordstatus=false;
              emailstatus=false;
-
              setState(() {
                if(name.text=="")
                {
@@ -177,11 +174,11 @@ class _ecomState extends State<ecom> {
                {
                  passwordstatus=true;
                }
-               if(email.text.contains("@")==false &&
-                   email.text.contains("gmail.com")==false)
+               if(email.text.contains("@")==false && email.text.contains("gmail.com")==false)
                {
                  emailstatus=true;
                }
+
              });
 
            },child: Text("Sign Up"))
@@ -191,6 +188,7 @@ class _ecomState extends State<ecom> {
     );
   }
   String imag="";
+  // String imag="";
 
 }
 
