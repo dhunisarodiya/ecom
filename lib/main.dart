@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 
 void main()
 {
-  runApp(MaterialApp(home: ecom(),));
+  runApp(MaterialApp(home: apicall(),));
 }
 class ecom extends StatefulWidget {
 
@@ -174,7 +174,8 @@ class _ecomState extends State<ecom> {
                {
                  passwordstatus=true;
                }
-               if(email.text.contains("@")==false && email.text.contains("gmail.com")==false)
+               if(email.text.contains("@")==false &&
+                   email.text.contains("gmail.com")==false)
                {
                  emailstatus=true;
                }
