@@ -174,12 +174,6 @@ class _ecomState extends State<ecom> {
                {
                  passwordstatus=true;
                }
-               if(email.text.contains("@")==false &&
-                   email.text.contains("gmail.com")==false)
-               {
-                 emailstatus=true;
-               }
-
              });
 
            },child: Text("Sign Up"))
@@ -189,7 +183,7 @@ class _ecomState extends State<ecom> {
     );
   }
   String imag="";
-  // String imag="";
+
 
 }
 

@@ -29,7 +29,8 @@ class _apicallState extends State<apicall> {
           subtitle: Text("${list2[index].address!.geolocation!.lat} , ${list2[index].name}"),
         );
       },),
-    )  :Center(child: CircularProgressIndicator());
+    )
+        :Center(child: CircularProgressIndicator());
   }
 
   @override
@@ -79,7 +80,7 @@ class _apicallState extends State<apicall> {
      var response = await http.get(url);
      print('Response status: ${response.statusCode}');
      print('Response body: ${response.body}');
-
+     developer.log('${response.body}');
      List users=jsonDecode(response.body);
      setState(() {
        for(int i=0;i<users.length;i++)
