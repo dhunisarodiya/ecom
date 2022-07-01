@@ -1,17 +1,11 @@
-import 'dart:io';
-import 'package:date_time_picker/date_time_picker.dart';
-import 'package:ecom/Apicall.dart';
-import 'package:ecom/json.dart';
+import 'package:ecom/second.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-
 
 void main()
 {
-  runApp(MaterialApp(home: apicall(),));
+  runApp(MaterialApp(home: ecom(),));
 }
 class ecom extends StatefulWidget {
-
   const ecom({Key? key}) : super(key: key);
 
   @override
@@ -19,171 +13,105 @@ class ecom extends StatefulWidget {
 }
 
 class _ecomState extends State<ecom> {
-  final ImagePicker _picker = ImagePicker();
-  bool namestatus=false;
-  bool numberstatus=false;
-  bool datestatus=false;
-  bool passwordstatus=false;
-  bool emailstatus=false;
-
   TextEditingController name=TextEditingController();
-  TextEditingController number=TextEditingController();
-  TextEditingController dateofbirth=TextEditingController();
   TextEditingController password=TextEditingController();
-  TextEditingController email=TextEditingController();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-  }
+  bool namestatus=false;
+  bool passwordstatus=false;
   @override
   Widget build(BuildContext context) {
-    double theight = MediaQuery.of(context).size.height;
-    double twidth = MediaQuery.of(context).size.width;
-    double statusbar = MediaQuery.of(context).padding.top;
-    double nagibar = MediaQuery.of(context).padding.bottom;
-    double appbarheight = kToolbarHeight;
+    double theight=MediaQuery.of(context).size.height;
+    double twidth=MediaQuery.of(context).size.width;
+    double statusbar=MediaQuery.of(context).padding.top;
+    double nagibar=MediaQuery.of(context).padding.bottom;
+    double appbarheight=kToolbarHeight;
 
-    double body = theight - statusbar - nagibar - appbarheight;
+    double body=theight-statusbar-nagibar;
     return Scaffold(
       body: SingleChildScrollView(
-       child: SafeArea    (
-         child: Column(children: [
-           InkWell(onTap: () {
-             showDialog( builder: (context) {
-               return Dialog(
-                 child: Column(children: [
-                   ElevatedButton.icon(onPressed: () async {
-                     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-                     setState(() {
-                       imag=image!.path;
-                       Navigator.pop(context);
-                     });
-                   },
-                       icon: Icon(Icons.photo), label: Text("gallery",
-                         style: TextStyle(
-                             fontSize: 15,
-                             fontWeight: FontWeight.bold),)),
-                   ElevatedButton.icon(onPressed: () async {
-                     final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-                     setState(() {
-                       imag=photo!.path;
-                       Navigator.pop(context);
-                     });
-                   },
-                       icon: Icon(Icons.camera), label: Text("camera",
-                         style: TextStyle(
-                             fontSize: 15,
-                             fontWeight: FontWeight.bold),))
-                 ],),
-               );
-             },context: context);
-           },
-             child:imag!="" ?
-             Center(
-               child: Container(
-                 child: CircleAvatar(radius: 80,
-                   backgroundImage: FileImage(File(imag)),),),
-             )
-                 :Center(
-               child: Container(
-                 child: CircleAvatar(radius: 80,
-                   backgroundImage: AssetImage("images/user.png"),),),
-             ),
-           ),
-           Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
-             child: TextField(
-                controller: name,
-                keyboardType: TextInputType.name,
+        child: Container(height: body,
+          width: twidth,
+          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("images/n4.jpg"),fit: BoxFit.fill)),
+          child:  Column(children: [
+            Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
+              child: TextField(controller: name,
                 decoration: InputDecoration(
-                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-                   labelText: "Enter Name",
-                   hintText: "enter name",
-                   errorText: namestatus?"Enter your valid name" :null
-               ),
-             ),
-           ),
-           Container(margin: EdgeInsets.fromLTRB(35, 00, 35, 10),
-             child: TextField(controller: number,
-               maxLength: 10,
-               keyboardType: TextInputType.phone,
-               decoration: InputDecoration(
-                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-                   labelText: "Enter Number",
-                   hintText: "enter number",
-                   errorText: numberstatus?"Enter your valid number" :null
-               ),
-             ),
-           ),
-           Container(margin: EdgeInsets.fromLTRB(35, 00, 35, 10),
-             child: DateTimePicker(controller: dateofbirth,
-               decoration: InputDecoration(
-               border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-                 labelText: "Enter dob",
-                 hintText: "enter dob",
-                 errorText: datestatus?"Enter your valid date":null,
-               ),
-              type: DateTimePickerType.date,
-              dateHintText: "select date",
-              firstDate: DateTime(1995),
-              lastDate: DateTime.now(),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(width: 1,color: Colors.black),),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                    labelText: "Enter Name",
+                    hintText: "enter name",
+                    errorText: namestatus?bb:null
+                ),
               ),
-         ),
-           Container(margin: EdgeInsets.fromLTRB(35, 00, 35, 10),
-             child: TextField(controller: password,
-               decoration: InputDecoration(
-                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-                   labelText: "Enter password",
-                   hintText: "enter password",
-                   errorText: passwordstatus?"Enter your valid password" :null
-               ),
-             ),
-           ),
-           Container(margin: EdgeInsets.fromLTRB(35, 00, 35, 10),
-             child: TextField(controller: email,
-               decoration: InputDecoration(
-                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-                   labelText: "Enter Email",
-                   hintText: "enter email",
-                   errorText: emailstatus?"Enter your valid email" :null
-               ),
-             ),
-           ),
-           ElevatedButton(onPressed: () {
-             namestatus=false;
-             numberstatus=false;
-             datestatus=false;
-             passwordstatus=false;
-             emailstatus=false;
-             setState(() {
-               if(name.text=="")
-               {
-                 namestatus=true;
-               }
-               if(number.text=="")
-               {
-                 numberstatus=true;
-               }
-               if(dateofbirth.text=="")
-               {
-                 datestatus=true;
-               }
-               if(password.text=="")
-               {
-                 passwordstatus=true;
-               }
-             });
+            ),
+            Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
+              child: TextField(controller: password,
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(width: 1,color: Colors.amber),),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                    labelText: "Enter password",
+                    hintText: "enter your password",
+                    errorText: passwordstatus?bb:null
+                ),
+              ),
+            ),
+            ElevatedButton(onPressed: () {
+              namestatus=false;
+              passwordstatus=false;
+              String na=name.text;
+              String pw=password.text;
 
-           },child: Text("Sign Up"))
-         ],)
-       ),
+              setState(() {
+
+                // String patttern = r'^[a-z A-Z,.\-]+$';
+                // RegExp fname = new RegExp(patttern);
+                // String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                // RegExp fnumber = new RegExp(pattern);
+                // String patternn=r'[!@#$%^&*(),.?":{}|<>]';
+                // RegExp pass=new RegExp(patternn);
+                if (name.text.length == 0) {
+                  namestatus=true;
+                  bb= 'Please enter full name';
+                }
+                else if (!RegExp( r'^[a-z A-Z,.\-]+$').hasMatch(na)) {
+                  namestatus=true;
+                  bb= 'Please enter valid full name';
+                }
+                else if(password.text=="")
+                {
+                  passwordstatus=true;
+                  bb="enter password";
+                }
+                else if (password.text.length < 8) {
+                  passwordstatus=true;
+                  bb= "Password has at least 8 characters\n";
+                }
+                else if (!RegExp("(?=.*[A-Z])").hasMatch(pw)) {
+                  passwordstatus=true;
+                  bb= "Password must contain at least one uppercase letter\n";
+                }
+                else if(!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(pw))
+                {
+                  passwordstatus=true;
+                  bb="Password must contain at least special characters letter\n";
+                }
+              });
+            },child: Text("Sign Up")),
+            Container(margin: EdgeInsets.fromLTRB(00, 05, 00,05 ),),
+            ElevatedButton(onPressed: () {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                return second();
+              },));
+            }, child: Text("Register"),)
+          ],),
+        ),
       ),
     );
   }
-  String imag="";
-
+  String bb="";
 
 }
 
