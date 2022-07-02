@@ -37,7 +37,6 @@ dependencies:
   image_picker:
   date_time_picker:
   http:
-dev_dependencies:
   flutter_test:
     sdk: flutter
 

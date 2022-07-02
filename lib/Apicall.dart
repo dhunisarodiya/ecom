@@ -25,7 +25,7 @@ class _apicallState extends State<apicall> {
                 "mountain-landscape-picture-id517188688?k=20&m=517188688&s=612x612&w="
                 "0&h=i38qBm2P-6V4vZVEaMy_TaTEaoCMkYhvLCysE7yJQ5Q=",fit: BoxFit.fill,
            ),
-          title: Text("${list2[index].password}"),
+          title: Text("${list2[index].address!.geolocation!.lat}"),
           subtitle: Text("${list2[index].address!.geolocation!.lat} , ${list2[index].name}"),
         );
       },),
@@ -39,7 +39,7 @@ class _apicallState extends State<apicall> {
     super.initState();
     // forapi();
     // forproducts();
-    forusers();
+    // forusers();
   }
 
    // forapi() async {
@@ -91,6 +91,7 @@ class _apicallState extends State<apicall> {
        status=true;
      });
    }
+
 }
 // class Myclass {
 //   int? id;
@@ -275,7 +276,8 @@ class Rating {
     data['count'] = this.count;
     return data;
   }
-}class Myusers {
+}
+class Myusers {
   Address? address;
   int? id;
   String? email;
@@ -395,5 +397,3 @@ class Name {
     return data;
   }
 }
-
-

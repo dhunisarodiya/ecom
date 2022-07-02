@@ -1,9 +1,13 @@
+import 'package:ecom/Apicall.dart';
+import 'package:ecom/json.dart';
 import 'package:ecom/second.dart';
 import 'package:flutter/material.dart';
 
+import 'apicalling.dart';
+
 void main()
 {
-  runApp(MaterialApp(home: ecom(),));
+  runApp(MaterialApp(home: apicall(),));
 }
 class ecom extends StatefulWidget {
   const ecom({Key? key}) : super(key: key);
@@ -13,9 +17,9 @@ class ecom extends StatefulWidget {
 }
 
 class _ecomState extends State<ecom> {
-  TextEditingController name=TextEditingController();
+  TextEditingController number=TextEditingController();
   TextEditingController password=TextEditingController();
-  bool namestatus=false;
+  bool numberstatus=false;
   bool passwordstatus=false;
   @override
   Widget build(BuildContext context) {
@@ -25,60 +29,57 @@ class _ecomState extends State<ecom> {
     double nagibar=MediaQuery.of(context).padding.bottom;
     double appbarheight=kToolbarHeight;
 
-    double body=theight-statusbar-nagibar;
-    return Scaffold(
+    double body=theight-statusbar;
+    return SafeArea(
+        child: Scaffold(
       body: SingleChildScrollView(
         child: Container(height: body,
           width: twidth,
-          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("images/n4.jpg"),fit: BoxFit.fill)),
+          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("images/img.png"),fit: BoxFit.fill)),
           child:  Column(children: [
+            Container(margin: EdgeInsets.fromLTRB(00, 50, 00,  80),),
             Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
-              child: TextField(controller: name,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      borderSide: BorderSide(width: 1,color: Colors.black),),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                    labelText: "Enter Name",
-                    hintText: "enter name",
-                    errorText: namestatus?bb:null
+              child: TextField(controller: number,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(width: 1,color: Colors.black54),),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                labelText: "Enter number",
+                hintText: "enter namber",
+                errorText: numberstatus?bb:null
                 ),
               ),
             ),
             Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
               child: TextField(controller: password,
                 decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      borderSide: BorderSide(width: 1,color: Colors.amber),),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                    labelText: "Enter password",
-                    hintText: "enter your password",
-                    errorText: passwordstatus?bb:null
+                  // enabledBorder: OutlineInputBorder(
+                  //   borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //   borderSide: BorderSide(width: 1,color: Colors.teal),),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  labelText: "Enter password",
+                  hintText: "enter your password",
+                  errorText: passwordstatus?bb:null
                 ),
               ),
             ),
+            Container(margin: EdgeInsets.fromLTRB(00, 10, 00, 10),),
             ElevatedButton(onPressed: () {
-              namestatus=false;
+              numberstatus=false;
               passwordstatus=false;
-              String na=name.text;
+              String nm=number.text;
               String pw=password.text;
 
               setState(() {
 
-                // String patttern = r'^[a-z A-Z,.\-]+$';
-                // RegExp fname = new RegExp(patttern);
-                // String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-                // RegExp fnumber = new RegExp(pattern);
-                // String patternn=r'[!@#$%^&*(),.?":{}|<>]';
-                // RegExp pass=new RegExp(patternn);
-                if (name.text.length == 0) {
-                  namestatus=true;
+                if (number.text.length == 0) {
+                  numberstatus=true;
                   bb= 'Please enter full name';
                 }
-                else if (!RegExp( r'^[a-z A-Z,.\-]+$').hasMatch(na)) {
-                  namestatus=true;
-                  bb= 'Please enter valid full name';
+                else if (!RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(nm)) {
+                  numberstatus=true;
+                  bb= 'Please enter valid mobile number';
                 }
                 else if(password.text=="")
                 {
@@ -91,16 +92,16 @@ class _ecomState extends State<ecom> {
                 }
                 else if (!RegExp("(?=.*[A-Z])").hasMatch(pw)) {
                   passwordstatus=true;
-                  bb= "Password must contain at least one uppercase letter\n";
+                  bb= "Password must contain one uppercase letter\n";
                 }
                 else if(!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(pw))
                 {
                   passwordstatus=true;
-                  bb="Password must contain at least special characters letter\n";
+                  bb="Password must contain special characters letter\n";
                 }
               });
             },child: Text("Sign Up")),
-            Container(margin: EdgeInsets.fromLTRB(00, 05, 00,05 ),),
+            Container(margin: EdgeInsets.fromLTRB(00, 10, 00,05 ),),
             ElevatedButton(onPressed: () {
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                 return second();
@@ -109,10 +110,9 @@ class _ecomState extends State<ecom> {
           ],),
         ),
       ),
-    );
+    ));
   }
   String bb="";
-
 }
 
 
