@@ -223,10 +223,10 @@ class _secondState extends State<second> {
                         "password":pass,
                         // "imagedata":imagedata
                       };
-                        // var url = Uri.parse('https://fakestoreapi.com/users');
-                        // var response = await http.post(url,body: map);
-                        // print('Response status: ${response.statusCode}');
-                        // print('Response body: ${response.body}');
+                      // var url = Uri.parse('https://example.com/whatsit/create');
+                      // var response = await http.post(url, body: map);
+                      // print('Response status: ${response.statusCode}');
+                      // print('Response body: ${response.body}');
 
                     }
                   });
