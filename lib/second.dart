@@ -4,6 +4,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'main.dart';
+import 'package:http/http.dart' as http;
 
 class second extends StatefulWidget {
   const second({Key? key}) : super(key: key);
@@ -80,7 +81,6 @@ class _secondState extends State<second> {
                       ),),
                   ),
                 ),
-
                 Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
                   child: TextField(controller: name,
                     decoration: InputDecoration(
@@ -146,10 +146,12 @@ class _secondState extends State<second> {
                   String namee=name.text;
                   String numberr=number.text;
                   String date=password.text;
-                  String passwordd=password.text;
+                  String pass=password.text;
                   String emaill=password.text;
 
-                  setState(() {
+                  // List<int> iii=File(img).readAsBytesSync();
+                  // String imagedata=base64Encode(iii);
+                  setState(()  {
 
                     if (name.text.length == 0)
                     {
@@ -186,12 +188,12 @@ class _secondState extends State<second> {
                       passwordstatus=true;
                       aa= "Password has at least 8 characters\n";
                     }
-                    else if (!RegExp("(?=.*[A-Z])").hasMatch(passwordd))
+                    else if (!RegExp("(?=.*[A-Z])").hasMatch(pass))
                     {
                       passwordstatus=true;
                       aa= "Password must contain one uppercase letter\n";
                     }
-                    else if(!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(passwordd))
+                    else if(!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(pass))
                     {
                       passwordstatus=true;
                       aa="Password must contain special characters letter\n";
@@ -200,7 +202,7 @@ class _secondState extends State<second> {
                       emailstatus=true;
                       aa= 'Enter your Address';
                     }
-                    else if (email.text.length > 5 && email.text.contains('@') ==false)
+                    else if (email.text.contains('@') ==false)
                     {
                       emailstatus=true;
                       aa= 'Enter a Valid Email Address';
@@ -212,8 +214,18 @@ class _secondState extends State<second> {
                     }
                     else
                     {
-                        List<int> imag=File(img).readAsBytesSync();
-                        String imagedata=base64Encode(imag);
+                      Map map={
+                        "name":namee,
+                        "email":emaill,
+                        "number":numberr,
+                        "dob":date,
+                        "password":pass,
+                        // "imagedata":imagedata
+                      };
+                        // var url = Uri.parse('https://fakestoreapi.com/users');
+                        // var response = await http.post(url,body: map);
+                        // print('Response status: ${response.statusCode}');
+                        // print('Response body: ${response.body}');
 
                     }
                   });
@@ -232,18 +244,6 @@ class _secondState extends State<second> {
   TextEditingController dateofbirth=TextEditingController();
   TextEditingController password=TextEditingController();
   TextEditingController email=TextEditingController();
-// FlutterPwValidator(
-// controller: _passwordController,
-// minLength: 6,
-// uppercaseCharCount: 2,
-// numericCharCount: 3,
-// specialCharCount: 1,
-// width: 400,
-// height: 150,
-// onSuccess: yourCallbackFunction,
-// onFail: yourCallbackFunction
-// )
-
 
   Future<bool> onback() {
     showDialog(builder: (context) {
@@ -255,14 +255,15 @@ class _secondState extends State<second> {
             return ecom();
           },));
 
-        }, child: Text("yes")),
+        }, child: Text("Yes")),
         FlatButton(onPressed: () {
           Navigator.pop(context);
 
-        }, child: Text("no"))
+        }, child: Text("No"))
       ],
-      title: Text("Are You Sure You Want To Exit"),);
+      title: Text("Are You Sure You Want To Exit ?"),);
     },context: context);
+
     return Future.value(true);
   }
 }

@@ -2,12 +2,11 @@ import 'package:ecom/Apicall.dart';
 import 'package:ecom/json.dart';
 import 'package:ecom/second.dart';
 import 'package:flutter/material.dart';
-
 import 'apicalling.dart';
 
 void main()
 {
-  runApp(MaterialApp(home: apicall(),));
+  runApp(MaterialApp(home: ecom(),));
 }
 class ecom extends StatefulWidget {
   const ecom({Key? key}) : super(key: key);
@@ -75,7 +74,7 @@ class _ecomState extends State<ecom> {
 
                 if (number.text.length == 0) {
                   numberstatus=true;
-                  bb= 'Please enter full name';
+                  bb= 'Please enter your number';
                 }
                 else if (!RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(nm)) {
                   numberstatus=true;
