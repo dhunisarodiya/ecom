@@ -35,7 +35,8 @@ class _secondState extends State<second> {
           body: SingleChildScrollView(
             child: Container(height: tbody,
               width: ttwidth,
-              decoration: BoxDecoration(image: DecorationImage(image: AssetImage("images/img.png"),fit: BoxFit.fill)),
+              decoration: BoxDecoration(image: DecorationImage(image: AssetImage("images/img.png"),
+                fit: BoxFit.fill)),
               child: Column(children: [
                 InkWell(onTap: () {
                   showDialog(builder: (context) {
