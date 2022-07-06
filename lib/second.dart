@@ -189,10 +189,10 @@ class _secondState extends State<second> {
                       passwordstatus=true;
                       aa= "Password has at least 8 characters\n";
                     }
-                    else if (!RegExp("(?=.*[A-Z])").hasMatch(pass))
+                    else if (!RegExp("(?=.*[a-z])").hasMatch(pass))
                     {
                       passwordstatus=true;
-                      aa= "Password must contain one uppercase letter\n";
+                      aa= "Password must contain one LowerCase letter\n";
                     }
                     else if(!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(pass))
                     {
@@ -227,7 +227,6 @@ class _secondState extends State<second> {
                       // var response = await http.post(url, body: map);
                       // print('Response status: ${response.statusCode}');
                       // print('Response body: ${response.body}');
-
                     }
                   });
                 },child: Text("Sign Up"))
