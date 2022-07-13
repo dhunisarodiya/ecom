@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -72,12 +73,13 @@ class _addproductState extends State<addproduct> {
       child: Scaffold(
         backgroundColor: Colors.blueGrey,
         body:SafeArea(
-          child:  Column(children: [
-          InkWell(onTap: () {
-            showDialog(builder: (context) {
-              return Dialog(
-                child: Column(children: [
-                  ElevatedButton.icon(
+          child:  SingleChildScrollView(
+            child: Column(children: [
+            InkWell(onTap: () {
+              showDialog(builder: (context) {
+                return Dialog(
+                  child: Column(children: [
+                    ElevatedButton.icon(
                       onPressed: () async {
                         Navigator.pop(context);
                         final XFile? image = await _picker.pickImage(
@@ -88,7 +90,7 @@ class _addproductState extends State<addproduct> {
                       },
                       icon: Icon(Icons.photo),
                       label: Text("Gallery")),
-                  ElevatedButton.icon(
+                    ElevatedButton.icon(
                       onPressed: () async {
                         Navigator.pop(context);
                         final XFile? photo = await _picker.pickImage(
@@ -99,42 +101,54 @@ class _addproductState extends State<addproduct> {
                       },
                       icon: Icon(Icons.camera),
                       label: Text("Camera")),
-                ],),);
-            },context: context);
-          },
-            child: img!="" ? Center(
-              child: Container(
-                child: CircleAvatar(radius: 90,
-                    backgroundImage:FileImage(File(img))
-                ),),
-            ) :Center(
-              child: Container(
-                child: CircleAvatar(radius: 90,
-                  backgroundImage:
-                  AssetImage("images/user.png"
-                  ),
-                ),),
-            ),
-          ),
-          Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
-            child: TextField(controller: name,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                labelText: "Enter Name",
-                hintText: "enter name",
+                  ],),);
+              },context: context);
+            },
+              child: img!="" ? Center(
+                child: Container(
+                  child: CircleAvatar(radius: 90,
+                      backgroundImage:FileImage(File(img))
+                  ),),
+              ) :Center(
+                child: Container(
+                  child: CircleAvatar(radius: 90,
+                    backgroundImage:
+                    AssetImage("images/user.png"
+                    ),
+                  ),),
               ),
             ),
-          ),
-          Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
-            child: TextField(controller: price,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                labelText: "Enter price",
-                hintText: "enter price",
+            Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
+              child: TextField(controller: name,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  labelText: "Enter Product Name",
+                  hintText: "enter product name",
+                ),
               ),
             ),
-          ),
-        ],))
+            Container(margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
+              child: TextField(controller: price,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  labelText: "Enter Product price",
+                  hintText: "enter product price",
+                ),
+              ),
+            ),
+            ElevatedButton.icon(onPressed: () async {
+              List<int> iii=File(img).readAsBytesSync();
+              String imagedata=base64Encode(iii);
+
+
+
+              // var url = Uri.parse('https://dummy.restapiexample.com/api/v1/employees');
+              // var response = await http.post(url,body: tyfty);
+              // print('Response status: ${response.statusCode}');
+              // print('Response body: ${response.body}');
+
+            }, icon: Icon(Icons.shopping_cart), label:Text("add product") )
+          ],)))
 
         ),
       onWillPop: onback);
