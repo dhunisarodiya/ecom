@@ -1,12 +1,13 @@
 import 'package:ecom/Apicall.dart';
 import 'package:ecom/json.dart';
+import 'package:ecom/productpage.dart';
 import 'package:ecom/second.dart';
 import 'package:flutter/material.dart';
 import 'apicalling.dart';
 
 void main()
 {
-  runApp(MaterialApp(home: ecom(),));
+  runApp(MaterialApp(home: product(),));
 }
 class ecom extends StatefulWidget {
   const ecom({Key? key}) : super(key: key);
