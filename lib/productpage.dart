@@ -99,6 +99,7 @@ class _addproductState extends State<addproduct> {
                         setState(() {
                           img=photo!.path;
                         });
+
                       },
                       icon: Icon(Icons.camera),
                       label: Text("Camera")),
