@@ -12,6 +12,7 @@ class product extends StatefulWidget {
 }
 
 class _productState extends State<product> {
+  List<Widget> list=[addproduct(),viewpoduct()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,15 +138,16 @@ class _addproductState extends State<addproduct> {
               ),
             ),
             ElevatedButton.icon(onPressed: () async {
-              List<int> iii=File(img).readAsBytesSync();
-              String imagedata=base64Encode(iii);
-
-
+              setState(() {
+                List<int> iii=File(img).readAsBytesSync();
+                String imagedata=base64Encode(iii);
 
               // var url = Uri.parse('https://dummy.restapiexample.com/api/v1/employees');
               // var response = await http.post(url,body: tyfty);
               // print('Response status: ${response.statusCode}');
               // print('Response body: ${response.body}');
+
+              });
 
             }, icon: Icon(Icons.shopping_cart), label:Text("add product") )
           ],)))
@@ -196,12 +198,13 @@ class _viewpoductState extends State<viewpoduct> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        child: Scaffold(backgroundColor: Colors.blue,
-          body: Container(
-            color: Colors.blue,
-          ),
-        ),
-        onWillPop: onback);
+      child: Scaffold(backgroundColor: Colors.blue,
+        body: SafeArea(child: Column(children: [
+
+        ],)
+        )
+      ),
+      onWillPop: onback);
   }
 
   Future<bool> onback() {
