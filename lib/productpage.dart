@@ -64,7 +64,6 @@ class addproduct extends StatefulWidget {
   @override
   State<addproduct> createState() => _addproductState();
 }
-
 class _addproductState extends State<addproduct> {
   TextEditingController name=TextEditingController();
   TextEditingController price=TextEditingController();
@@ -208,7 +207,12 @@ class _viewpoductState extends State<viewpoduct> {
       ),
       onWillPop: onback);
   }
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewproo();
+  }
   Future<bool> onback() {
     showDialog(
         builder: (context) {
@@ -237,5 +241,8 @@ class _viewpoductState extends State<viewpoduct> {
         context: context);
 
     return Future.value(true);
+  }
+  void viewproo() {
+
   }
 }
