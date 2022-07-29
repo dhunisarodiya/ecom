@@ -38,6 +38,7 @@ dependencies:
   date_time_picker:
   http:
   flutter_test:
+  chopper:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
